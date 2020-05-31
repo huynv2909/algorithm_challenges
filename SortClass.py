@@ -37,7 +37,18 @@ class SortClass:
 
             self.swap(i, index)
 
+    def bubbleSort(self):
+        swapped = True
+        k = 0
+        while swapped:
+            swapped = False
+            for i in range(len(self.object_unsorted) - 1 - k):
+                if self.object_unsorted[i] > self.object_unsorted[i + 1]:
+                    self.swap(i, i + 1)
+                    swapped = True
+            k += 1
+
 
 x = SortClass()
-x.selectionSort()
+x.bubbleSort()
 x.printResult()
