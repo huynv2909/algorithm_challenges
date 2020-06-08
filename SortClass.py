@@ -48,7 +48,43 @@ class SortClass:
                     swapped = True
             k += 1
 
+    def merge(self, start, mid, end):
+        temp_list = self.object_unsorted.copy()
+        i = start
+        j = mid + 1
+        k = i
+        while i <= mid and j <= end:
+            if self.object_unsorted[i] < self.object_unsorted[j]:
+                temp_list[k] = self.object_unsorted[i]
+                i += 1
+            else:
+                temp_list[k] = self.object_unsorted[j]
+                j += 1
+            k += 1
+
+        while i <= mid:
+            temp_list[k] = self.object_unsorted[i]
+            k += 1
+            i += 1
+
+        for i in range(start, end + 1):
+            self.object_unsorted[i] = temp_list[i]
+
+    def mergeSortRecursion(self, low, high):
+        if high == low:
+            return
+
+        mid = (low + ((high - low) >> 1))
+
+        self.mergeSortRecursion(low, mid)
+        self.mergeSortRecursion(mid + 1, high)
+
+        self.merge(low, mid, high)
+
+    def mergeSort(self):
+        self.mergeSortRecursion(0, len(self.object_unsorted) - 1)
+
 
 x = SortClass()
-x.bubbleSort()
+x.mergeSort()
 x.printResult()
