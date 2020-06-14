@@ -84,7 +84,28 @@ class SortClass:
     def mergeSort(self):
         self.mergeSortRecursion(0, len(self.object_unsorted) - 1)
 
+    def partition(self, start, end):
+        pivot = self.object_unsorted[end]
+        index = start
 
-x = SortClass()
-x.mergeSort()
-x.printResult()
+        for i in range(start, end):
+            if self.object_unsorted[i] <= pivot:
+                self.swap(i, index)
+                index = index + 1
+
+        self.swap(index, end)
+
+        return index
+
+    def quickSortRecursion(self, start, end):
+        if start >= end:
+            return
+
+        pivot = self.partition(start, end)
+        self.quickSortRecursion(start, pivot - 1)
+        self.quickSortRecursion(pivot + 1, end)
+
+    def quickSort(self):
+        self.quickSortRecursion(0, len(self.object_unsorted) - 1)
+
+
