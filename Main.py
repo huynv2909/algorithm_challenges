@@ -1,4 +1,5 @@
 from Class.SortClass import *
+from Class.SearchClass import *
 from numpy import random
 
 
@@ -14,6 +15,12 @@ def sortFunction():
     sort_obj.quickSort()
     print("Sorted array:")
     sort_obj.printResult()
+    return array
 
 
-sortFunction()
+def searchFunction():
+    search_obj = SearchClass()
+    search_obj.BinarySearch(sortFunction(), 11)
+
+
+searchFunction()
